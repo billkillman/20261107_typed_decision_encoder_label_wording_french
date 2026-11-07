@@ -1,0 +1,213 @@
+{
+ "primary_metric": "permutation_flip_rate",
+ "direction": "min",
+ "metric_labels": {
+  "permutation_flip_rate": "taux de bascule (permutation)",
+  "accuracy_seen_classes": "accuracy, intentions vues",
+  "accuracy_unseen_classes": "accuracy, intentions jamais vues",
+  "macro_f1": "macro-F1 (intentions vues)",
+  "expected_calibration_error": "ECE après température",
+  "scenario_consistency_rate": "erreurs dans le bon scénario",
+  "accuracy_vocab_french": "accuracy, libellés reformulés",
+  "accuracy_vocab_truncated": "accuracy, sigles tronqués",
+  "accuracy_vocab_opaque": "accuracy, codes opaques"
+ },
+ "dataset": {
+  "name": "mteb/amazon_massive_intent",
+  "config": "fr",
+  "split": "test",
+  "n_examples": 120
+ },
+ "approaches": [
+  {
+   "name": "CamemBERT-base (classes fixes)",
+   "role": "reference",
+   "metrics": {
+    "permutation_flip_rate": 0.0,
+    "accuracy_seen_classes": 0.15625,
+    "accuracy_unseen_classes": null,
+    "macro_f1": 0.08512621165682391,
+    "expected_calibration_error": 0.02999625778909415,
+    "scenario_consistency_rate": 0.07407407407407407,
+    "accuracy_vocab_french": null,
+    "accuracy_vocab_truncated": null,
+    "accuracy_vocab_opaque": null
+   },
+   "ci95": {
+    "permutation_flip_rate": [
+     0.0,
+     0.0
+    ],
+    "accuracy_seen_classes": [
+     0.09375,
+     0.23958333333333334
+    ],
+    "macro_f1": [
+     0.04875196120382256,
+     0.1269710206690816
+    ],
+    "expected_calibration_error": [
+     0.010711493088281454,
+     0.10216913434348714
+    ],
+    "scenario_consistency_rate": [
+     0.024691358024691357,
+     0.13580246913580246
+    ]
+   },
+   "latency_ms": {
+    "p50": 26.68,
+    "p95": 35.23,
+    "n": 10.0
+   },
+   "notes": "almanach/camembert-base, 50 classes, époque 1/1, T=0.23, choix restreint aux options connues, bascule mesurée sur les ordres ['random', 'reversed'] ; test 4016bfb45386d22b"
+  },
+  {
+   "name": "Décideur typé (augmentation de libellés)",
+   "role": "new",
+   "metrics": {
+    "permutation_flip_rate": 0.0,
+    "accuracy_seen_classes": 0.3125,
+    "accuracy_unseen_classes": 0.4166666666666667,
+    "macro_f1": 0.2770626199197628,
+    "expected_calibration_error": 0.10785651815472311,
+    "scenario_consistency_rate": 0.12121212121212122,
+    "accuracy_vocab_french": 0.38333333333333336,
+    "accuracy_vocab_truncated": 0.175,
+    "accuracy_vocab_opaque": 0.15833333333333333
+   },
+   "ci95": {
+    "permutation_flip_rate": [
+     0.0,
+     0.0
+    ],
+    "accuracy_seen_classes": [
+     0.21875,
+     0.3958333333333333
+    ],
+    "accuracy_unseen_classes": [
+     0.25,
+     0.625
+    ],
+    "macro_f1": [
+     0.18588588588588587,
+     0.3351955851955852
+    ],
+    "expected_calibration_error": [
+     0.06102383826356269,
+     0.2129626608710229
+    ],
+    "scenario_consistency_rate": [
+     0.045454545454545456,
+     0.19696969696969696
+    ],
+    "accuracy_vocab_french": [
+     0.2916666666666667,
+     0.475
+    ],
+    "accuracy_vocab_truncated": [
+     0.10833333333333334,
+     0.24166666666666667
+    ],
+    "accuracy_vocab_opaque": [
+     0.1,
+     0.225
+    ]
+   },
+   "latency_ms": {
+    "p50": 51.58,
+    "p95": 89.15,
+    "n": 10.0
+   },
+   "notes": "jhu-clsp/mmBERT-small cross-encoder, K=4, époque 1/1, T=0.51, 8 options, ordres ['random', 'reversed'], attention sdpa, écart entre appels 0.0e+00"
+  },
+  {
+   "name": "Décideur typé (libellés fixes)",
+   "role": "new",
+   "metrics": {
+    "permutation_flip_rate": 0.0,
+    "accuracy_seen_classes": 0.6666666666666666,
+    "accuracy_unseen_classes": 0.5833333333333334,
+    "macro_f1": 0.6519274376417233,
+    "expected_calibration_error": 0.12889152988332822,
+    "scenario_consistency_rate": 0.25,
+    "accuracy_vocab_french": 0.7333333333333333,
+    "accuracy_vocab_truncated": 0.2833333333333333,
+    "accuracy_vocab_opaque": 0.14166666666666666
+   },
+   "ci95": {
+    "permutation_flip_rate": [
+     0.0,
+     0.0
+    ],
+    "accuracy_seen_classes": [
+     0.5729166666666666,
+     0.7604166666666666
+    ],
+    "accuracy_unseen_classes": [
+     0.375,
+     0.7916666666666666
+    ],
+    "macro_f1": [
+     0.5428078696371379,
+     0.7144557823129252
+    ],
+    "expected_calibration_error": [
+     0.10093259997835245,
+     0.21875434013912545
+    ],
+    "scenario_consistency_rate": [
+     0.125,
+     0.40625
+    ],
+    "accuracy_vocab_french": [
+     0.6583333333333333,
+     0.8083333333333333
+    ],
+    "accuracy_vocab_truncated": [
+     0.2,
+     0.36666666666666664
+    ],
+    "accuracy_vocab_opaque": [
+     0.08333333333333333,
+     0.20833333333333334
+    ]
+   },
+   "latency_ms": {
+    "p50": 50.88,
+    "p95": 88.43,
+    "n": 10.0
+   },
+   "notes": "jhu-clsp/mmBERT-small cross-encoder, K=4, époque 1/1, T=0.88, 8 options, ordres ['random', 'reversed'], attention sdpa, écart entre appels 0.0e+00"
+  }
+ ],
+ "phase": "public",
+ "scale": "reduced",
+ "seed": 42,
+ "date": "2026-11-07T02:52:58+00:00",
+ "environment": {
+  "python": "3.12.16",
+  "system": "Linux-7.0.0-1019-azure-x86_64-with-glibc2.41",
+  "cpu": 4,
+  "ram_gb": 15.6,
+  "device": "cpu",
+  "gpu": null,
+  "scale": "reduced",
+  "versions": {
+   "torch": "2.15.0+cpu",
+   "transformers": "5.22.2",
+   "datasets": "5.1.0",
+   "sentence-transformers": "6.2.0",
+   "scikit-learn": "1.9.1",
+   "numpy": "2.5.4",
+   "pandas": "3.1.1",
+   "openai": "3.46.0",
+   "xgboost": "3.4.1"
+  }
+ },
+ "service_calls": {
+  "n": 0,
+  "failures": 0,
+  "seconds": 0
+ }
+}
